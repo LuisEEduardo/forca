@@ -1,3 +1,8 @@
+def clean(): 
+    import os 
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+
 def pegando_palavras():
     """
     def pegando_palavras
@@ -33,14 +38,37 @@ def tratando_palavra_sorteda():
 
 
 def jogando(palavra, palavra_modicificada):
+    """
+    jogando() -> Aqui onde a lógica do jogo acontece 
+    return se o usuário ganhou ou não o jogo
+    """
     # chutando uma letra
-    print()
+    clean()
+    print(palavra)
+    print("Dicas: ")
+    print(f"É uma fruta")
+    print(f"A sua palavra tem {len(palavra_modicificada)} letras")
+    
+    print(f"\n\n{palavra_modicificada}")
+    letra = input("Insira uma letra: ")
+
+    # Subisituindo a letra
+    if letra in palavra: 
+        print(True)
     
 
 
 def apresentando_regra(): 
+    from time import sleep
+    clean()
     print("jogo da forca".upper())
     print("""Regras: \n1 - Você tera 6 chances de acertar a palavra \n1.1 - Se acertar a palavra dentro das 6 chances você ganha o jogo \n1.2 - Se não você perde 
     """)
+    print("Começando ...")
+    sleep(1)
 
+
+# Escopo principal
 apresentando_regra()
+p1, p2 = tratando_palavra_sorteda()
+jogando(palavra=p1, palavra_modicificada=p2)

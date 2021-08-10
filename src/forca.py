@@ -60,10 +60,12 @@ def jogando(palavra, palavra_modicificada):
             # Letra repetida
             if (qtd_de_repeticoes > 1): 
                 indice = palavra.index(letra)
-                for i in range(qtd_de_repeticoes): 
-                    l = palavra.find(letra, indice)
-                    indice = palavra.index(letra) + 1
-                    print(l)
+                somador = 1
+                for i in range(qtd_de_repeticoes + 1): 
+                    posicao = palavra.find(letra, indice)
+                    palavra_modicificada[posicao] = letra
+                    indice = palavra.find(letra, (indice + somador))
+                    somador += 1
             # Sem reptição
             else: 
                 indice = palavra.index(letra)

@@ -50,11 +50,31 @@ def jogando(palavra, palavra_modicificada):
     print(f"A sua palavra tem {len(palavra_modicificada)} letras")
     
     print(f"\n\n{palavra_modicificada}")
-    letra = input("Insira uma letra: ")
 
     # Subisituindo a letra
-    if letra in palavra: 
-        print(True)
+    chances = 6
+    while chances > 0:
+        letra = input("Insira uma letra ou a palavra: ")
+        if letra in palavra: 
+            qtd_de_repeticoes = palavra.count(letra)
+            # Letra repetida
+            if (qtd_de_repeticoes > 1): 
+                indice = palavra.index(letra)
+                for i in range(qtd_de_repeticoes): 
+                    l = palavra.find(letra, indice)
+                    indice = palavra.index(letra) + 1
+                    print(l)
+            # Sem reptição
+            else: 
+                indice = palavra.index(letra)
+                palavra_modicificada[indice] = letra
+            print(indice)
+            print(True)
+            print(palavra_modicificada)
+        else: 
+            chances -= 1
+            print(False)
+
     
 
 

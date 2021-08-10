@@ -75,10 +75,8 @@ def jogando(palavra, palavra_modicificada):
             print(palavra_modicificada)
         else: 
             chances -= 1
-            print(False)
-
+            print(False)  
     
-
 
 def apresentando_regra(): 
     from time import sleep

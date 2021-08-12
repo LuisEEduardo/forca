@@ -55,7 +55,12 @@ def jogando(palavra, palavra_modicificada):
     chances = 6
     while chances > 0:
         chute = input("Insira uma letra ou a palavra: ")
-        if chute in palavra: 
+        # Se for uma palavra
+        if chute == palavra: 
+            print("Você ganhou !!!")
+            break
+        # Se for uma letra
+        elif chute in palavra: 
             qtd_de_repeticoes = palavra.count(chute)
             # chute repetida
             if (qtd_de_repeticoes > 1): 
@@ -65,6 +70,9 @@ def jogando(palavra, palavra_modicificada):
                     if posicao > -1:
                         palavra_modicificada[posicao] = chute
                     indice = palavra.find(chute, (indice + 1))
+            # verificando se ganhou 
+            elif palavra_modicificada == ''.join(palavra_modicificada):
+                print("Você ganhou !!!")
             # Sem reptição
             else: 
                 posicao = palavra.find(chute)

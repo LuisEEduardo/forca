@@ -49,11 +49,12 @@ def jogando(palavra, palavra_modicificada):
     print(f"É uma fruta")
     print(f"A sua palavra tem {len(palavra_modicificada)} letras")
     
-    print(f"\n\n{palavra_modicificada}")
-
     # Subisituindo a letra
-    chances = 6
-    while chances > 0:
+    
+    chances = 0
+    print(f"{boneco(posicao=chances)}")
+    print(f"{palavra_modicificada}")
+    while chances != 7:
         chute = input("Insira uma letra ou a palavra: ")
         # Se for uma palavra
         if chute == palavra: 
@@ -80,9 +81,83 @@ def jogando(palavra, palavra_modicificada):
             print(posicao)
             print(palavra_modicificada)
         else: 
-            chances -= 1
+            chances += 1
             print(False)  
-    
+
+
+def boneco(posicao):
+    """
+    Funcao boneco 
+    return -> devolve a forca 
+    """
+    b = ["""
++=======+ 
+|       |
+|
+|
+|
+|
+=========
+    """, """
++=======+ 
+|       |
+|       o
+|
+|
+|
+=========
+    """, """
++=======+ 
+|       |
+|       o
+|       |
+|
+|
+=========
+    """, """
++=======+ 
+|       |
+|       o
+|      /|
+|
+|
+=========
+    """, """
++=======+ 
+|       |
+|       o
+|      /|\\
+|
+|
+=========
+    """, 
+    """
++=======+ 
+|       |
+|       o
+|      /|\\
+|       |
+|
+=========
+    """, """
++=======+ 
+|       |
+|       o
+|      /|\\
+|       |
+|      /|
+=========
+    """, """
++=======+ 
+|       |
+|       o
+|      /|\\
+|       |
+|      /|\\
+=========
+    """]
+    return b[posicao]
+
 
 def apresentando_regra(): 
     from time import sleep

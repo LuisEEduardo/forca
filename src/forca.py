@@ -39,7 +39,7 @@ def tratando_palavra_sorteda():
 
 def informacoes_sobre_o_jogo(palavra, palavra_certa, tentativas):
     print("Dicas:")
-    print(f"palavra: {palavra_certa}")
+    # print(f"palavra: {palavra_certa}")
     print(f"É uma fruta")
     print(f"A sua palavra tem {len(palavra)} letras")
     print(f"{boneco(posicao=tentativas)}")

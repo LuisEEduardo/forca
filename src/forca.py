@@ -37,28 +37,31 @@ def tratando_palavra_sorteda():
     return palavra, palavra_underline
 
 
+def informacoes_sobre_o_jogo(palavra, palavra_certa, tentativas):
+    print("Dicas:")
+    print(f"palavra: {palavra_certa}")
+    print(f"É uma fruta")
+    print(f"A sua palavra tem {len(palavra)} letras")
+    print(f"{boneco(posicao=tentativas)}")
+    print(palavra)
+
+
+
 def jogando(palavra, palavra_modicificada):
+    from time import sleep
     """
     jogando() -> Aqui onde a lógica do jogo acontece 
     return se o usuário ganhou ou não o jogo
     """
-    # chutando uma letra
     clean()
-    print(palavra)
-    print("Dicas: ")
-    print(f"É uma fruta")
-    print(f"A sua palavra tem {len(palavra_modicificada)} letras")
-    
-    # Subisituindo a letra
-    
+    # chutando e Subisituindo a letra
     chances = 0
-    print(f"{boneco(posicao=chances)}")
-    print(f"{palavra_modicificada}")
-    while chances != 7:
+    while chances != 8:
+        informacoes_sobre_o_jogo(palavra=palavra_modicificada, palavra_certa=palavra, tentativas=chances)
         chute = input("Insira uma letra ou a palavra: ")
         # Se for uma palavra
         if chute == palavra: 
-            print("Você ganhou !!!")
+            print("\033[1;42;30mVocê ganhou !!!\033[m")
             break
         # Se for uma letra
         elif chute in palavra: 
@@ -72,17 +75,24 @@ def jogando(palavra, palavra_modicificada):
                         palavra_modicificada[posicao] = chute
                     indice = palavra.find(chute, (indice + 1))
             # verificando se ganhou 
-            elif palavra_modicificada == ''.join(palavra_modicificada):
-                print("Você ganhou !!!")
+            elif palavra == ''.join(palavra_modicificada):
+                print("\033[1;32mVocê ganhou !!!\033[m")
+                break
             # Sem reptição
             else: 
                 posicao = palavra.find(chute)
                 palavra_modicificada[posicao] = chute
-            print(posicao)
             print(palavra_modicificada)
         else: 
             chances += 1
-            print(False)  
+            if chances == 7: 
+                boneco(posicao=7)
+                chances += 1
+                print("\033[1;41;97mVocê perdeu\033[m ")
+            else:
+                print("\033[1;33mLetra Errada\033[m ")  
+                sleep(2)
+        clean()
 
 
 def boneco(posicao):
@@ -147,14 +157,14 @@ def boneco(posicao):
 |       |
 |      /|
 =========
-    """, """
+    """, """\033[1;31m 
 +=======+ 
 |       |
 |       o
 |      /|\\
 |       |
 |      /|\\
-=========
+=========\033[m 
     """]
     return b[posicao]
 
@@ -166,7 +176,7 @@ def apresentando_regra():
     print("""Regras: \n1 - Você tera 6 chances de acertar a palavra \n1.1 - Se acertar a palavra dentro das 6 chances você ganha o jogo \n1.2 - Se não você perde 
     """)
     print("Começando ...")
-    sleep(1)
+    sleep(3)
 
 
 # Escopo principal

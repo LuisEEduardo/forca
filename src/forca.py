@@ -74,10 +74,6 @@ def jogando(palavra, palavra_modicificada):
                     if posicao > -1:
                         palavra_modicificada[posicao] = chute.lower()
                     indice = palavra.find(chute, (indice + 1))
-            # verificando se ganhou 
-            elif palavra == ''.join(palavra_modicificada):
-                print("\033[1;32mVocê ganhou !!!\033[m")
-                break
             # Sem reptição
             else: 
                 posicao = palavra.find(chute)

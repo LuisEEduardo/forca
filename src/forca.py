@@ -39,7 +39,7 @@ def tratando_palavra_sorteda():
 
 def informacoes_sobre_o_jogo(palavra, palavra_certa, tentativas):
     print("Dicas:")
-    # print(f"palavra: {palavra_certa}")
+    print(f"palavra: {palavra_certa}")
     print(f"É uma fruta")
     print(f"A sua palavra tem {len(palavra)} letras")
     print(f"{boneco(posicao=tentativas)}")
@@ -72,7 +72,7 @@ def jogando(palavra, palavra_modicificada):
                 for i in range(qtd_de_repeticoes + 1): 
                     posicao = palavra.find(chute, indice)
                     if posicao > -1:
-                        palavra_modicificada[posicao] = chute
+                        palavra_modicificada[posicao] = chute.lower()
                     indice = palavra.find(chute, (indice + 1))
             # verificando se ganhou 
             elif palavra == ''.join(palavra_modicificada):
@@ -81,7 +81,7 @@ def jogando(palavra, palavra_modicificada):
             # Sem reptição
             else: 
                 posicao = palavra.find(chute)
-                palavra_modicificada[posicao] = chute
+                palavra_modicificada[posicao] = chute.lower()
             print(palavra_modicificada)
         else: 
             chances += 1
@@ -179,7 +179,7 @@ def apresentando_regra():
     sleep(3)
 
 
-# Escopo principal
+# Rotina principal
 apresentando_regra()
 p1, p2 = tratando_palavra_sorteda()
-jogando(palavra=p1, palavra_modicificada=p2)
+jogando(palavra=p1.lower(), palavra_modicificada=p2)

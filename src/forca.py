@@ -33,13 +33,12 @@ def tratando_palavra_sorteda():
     return Uma palavra 
     """
     palavra = escolhendo_palavra_aleatoria()
-    palavra_underline = ["\033[34m_\033[m" for x in range(len(palavra))]
+    palavra_underline = ["_" for x in range(len(palavra))]
     return palavra, palavra_underline
 
 
-def informacoes_sobre_o_jogo(palavra, palavra_certa, tentativas):
+def informacoes_sobre_o_jogo(palavra, tentativas):
     print("Dicas:")
-    print(f"palavra: {palavra_certa}")
     print(f"É uma fruta")
     print(f"A sua palavra tem {len(palavra)} letras")
     print(f"{boneco(posicao=tentativas)}")
@@ -57,13 +56,14 @@ def jogando(palavra, palavra_modicificada):
     # chutando e Subisituindo a letra
     chances = 0
     while chances != 8:
-        informacoes_sobre_o_jogo(palavra=palavra_modicificada, palavra_certa=palavra, tentativas=chances)
+        informacoes_sobre_o_jogo(palavra=palavra_modicificada, tentativas=chances)
 
-        if palavra == ''.join(palavra_modicificada): 
+        if palavra.upper() == ''.join(palavra_modicificada): 
             print("\033[1;42;30mVocê ganhou !!!\033[m")
             break
-        chute = input("\nInsira uma letra ou a palavra: ")
 
+        chute = input("\nInsira uma letra ou a palavra: ")
+        
         # Se for uma palavra
         if chute.lower() == palavra.lower(): 
             print("\033[1;42;30mVocê ganhou !!!\033[m")

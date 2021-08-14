@@ -33,7 +33,7 @@ def tratando_palavra_sorteda():
     return Uma palavra 
     """
     palavra = escolhendo_palavra_aleatoria()
-    palavra_underline = ["_" for x in range(len(palavra))]
+    palavra_underline = ["\033[34m_\033[m" for x in range(len(palavra))]
     return palavra, palavra_underline
 
 
@@ -43,7 +43,7 @@ def informacoes_sobre_o_jogo(palavra, palavra_certa, tentativas):
     print(f"É uma fruta")
     print(f"A sua palavra tem {len(palavra)} letras")
     print(f"{boneco(posicao=tentativas)}")
-    print(palavra)
+    print(' '.join(palavra))
 
 
 
@@ -58,9 +58,14 @@ def jogando(palavra, palavra_modicificada):
     chances = 0
     while chances != 8:
         informacoes_sobre_o_jogo(palavra=palavra_modicificada, palavra_certa=palavra, tentativas=chances)
-        chute = input("Insira uma letra ou a palavra: ")
+
+        if palavra == ''.join(palavra_modicificada): 
+            print("\033[1;42;30mVocê ganhou !!!\033[m")
+            break
+        chute = input("\nInsira uma letra ou a palavra: ")
+
         # Se for uma palavra
-        if chute == palavra: 
+        if chute.lower() == palavra.lower(): 
             print("\033[1;42;30mVocê ganhou !!!\033[m")
             break
         # Se for uma letra
@@ -72,13 +77,14 @@ def jogando(palavra, palavra_modicificada):
                 for i in range(qtd_de_repeticoes + 1): 
                     posicao = palavra.find(chute, indice)
                     if posicao > -1:
-                        palavra_modicificada[posicao] = chute.lower()
+                        palavra_modicificada[posicao] = chute.upper()
                     indice = palavra.find(chute, (indice + 1))
             # Sem reptição
             else: 
                 posicao = palavra.find(chute)
-                palavra_modicificada[posicao] = chute.lower()
-            print(palavra_modicificada)
+                palavra_modicificada[posicao] = chute.upper()
+            # Saída
+            #print(' '.join(palavra_modicificada))
         else: 
             chances += 1
             if chances == 7: 
